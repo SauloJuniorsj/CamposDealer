@@ -50,36 +50,34 @@ namespace CamposDealer.Persistence.Migrations
                     SalesQtd = table.Column<int>(type: "int", nullable: false),
                     ValueUnitValue = table.Column<int>(type: "int", nullable: false),
                     SaleDatetime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TotalSaleValue = table.Column<float>(type: "real", nullable: false),
-                    ClientId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    TotalSaleValue = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sales", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sales_Clients_ClientId",
-                        column: x => x.ClientId,
+                        name: "FK_Sales_Clients_IdClient",
+                        column: x => x.IdClient,
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Sales_Products_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_Sales_Products_IdProduct",
+                        column: x => x.IdProduct,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sales_ClientId",
+                name: "IX_Sales_IdClient",
                 table: "Sales",
-                column: "ClientId");
+                column: "IdClient");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sales_ProductId",
+                name: "IX_Sales_IdProduct",
                 table: "Sales",
-                column: "ProductId");
+                column: "IdProduct");
         }
 
         /// <inheritdoc />

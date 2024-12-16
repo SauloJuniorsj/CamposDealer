@@ -53,6 +53,8 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty; // Abre o Swagger diretamente na raiz
 });
 
+ServiceExtensions.MigrationInitializer(app);
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

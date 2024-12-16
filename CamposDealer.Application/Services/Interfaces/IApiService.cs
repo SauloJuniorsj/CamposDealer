@@ -2,6 +2,7 @@
 {
     public interface IApiService
     {
-        Task<List<T>> GetAsync<T>(string url);
+        Task<T> GetAsync<T>(string url);
+        DateTime ParseDate(string jsonDate);
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CamposDealer.Persistence.Migrations
 {
     [DbContext(typeof(CamposDealerContext))]
-    [Migration("20241216153924_firstMigration")]
+    [Migration("20241216190813_firstMigration")]
     partial class firstMigration
     {
         /// <inheritdoc />
@@ -76,16 +76,10 @@ namespace CamposDealer.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdClient")
                         .HasColumnType("int");
 
                     b.Property<int>("IdProduct")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("SaleDatetime")
@@ -102,9 +96,9 @@ namespace CamposDealer.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("IdClient");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("IdProduct");
 
                     b.ToTable("Sales");
                 });
@@ -113,13 +107,13 @@ namespace CamposDealer.Persistence.Migrations
                 {
                     b.HasOne("CamposDealer.Domain.Entities.ClientEntity", "Client")
                         .WithMany()
-                        .HasForeignKey("ClientId")
+                        .HasForeignKey("IdClient")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CamposDealer.Domain.Entities.ProductEntity", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("IdProduct")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

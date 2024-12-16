@@ -19,11 +19,15 @@ namespace CamposDealer.Persistence.Configurations
                 .Property(x => x.SaleDatetime)
                 .IsRequired();
 
-            builder
-                .HasOne(x => x.Client);
-            
-            builder
-                .HasOne(x => x.Product);
+            builder.HasOne(x => x.Client)
+            .WithMany()
+            .HasForeignKey(x => x.IdClient)  
+            .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(x => x.Product)
+                .WithMany()
+                .HasForeignKey(x => x.IdProduct)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

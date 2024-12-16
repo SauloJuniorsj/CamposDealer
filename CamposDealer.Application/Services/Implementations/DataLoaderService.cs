@@ -19,16 +19,16 @@ namespace CamposDealer.Application.Services.Implementations
 
         public async Task LoadDataAsync()
         {
-            var clientes = await _apiService.GetAsync<UpdateClientInputModel>("https://camposdealer.dev/Sites/TesteAPI/cliente");
-            IEnumerable<ClientEntity> convertedClient = clientes.Select(x => new ClientEntity(x.Id, x.Name, x.City));
+            var clientes = await _apiService.GetAsync<List<ClientJsonViewModel>>("https://camposdealer.dev/Sites/TesteAPI/cliente");
+            IEnumerable<ClientEntity> convertedClient = clientes.Select(x => new ClientEntity(x.nmCliente, x.Cidade));
             await _repository.SaveClientesAsync(convertedClient);
 
-            var produtos = await _apiService.GetAsync<UpdateProductInputModel>("https://camposdealer.dev/Sites/TesteAPI/produto");
-            IEnumerable<ProductEntity> convertedProduct = produtos.Select(x => new ProductEntity(x.Id, x.Description, x.ProductValue));
+            var produtos = await _apiService.GetAsync<List<ProductJsonInputModel>>("https://camposdealer.dev/Sites/TesteAPI/produto");
+            IEnumerable<ProductEntity> convertedProduct = produtos.Select(x => new ProductEntity(x.dscProduto, x.vlrUnitario));
             await _repository.SaveProdutosAsync(convertedProduct);
 
-            var vendas = await _apiService.GetAsync<UpdateSaleInputModel>("https://camposdealer.dev/Sites/TesteAPI/venda");
-            IEnumerable<SalesEntity> convertedVenda = vendas.Select(x => new SalesEntity(x.Id, x.IdClient, x.IdProduct, x.SalesQtd, x.ValueUnitValue, x.SaleDatetime, x.TotalSaleValue));
+            var vendas = await _apiService.GetAsync<List<SaleJsonInputModel>>("https://camposdealer.dev/Sites/TesteAPI/venda");
+            IEnumerable<SalesEntity> convertedVenda = vendas.Select(x => new SalesEntity(x.idCliente, x.idProduto, x.qtdVenda, x.vlrUnitarioVenda, _apiService.ParseDate(x.dthVenda)));
             await _repository.SaveVendasAsync(convertedVenda);
         }
     }

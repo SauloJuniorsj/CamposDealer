@@ -26,20 +26,19 @@
             TotalSaleValue = totalSaleValue;
         }
 
-        public SalesEntity(int id, int idClient, int idProduct, int salesQtd, int valueUnitValue, DateTime saleDatetime, float totalSaleValue)
+        public SalesEntity(int idClient, int idProduct, int salesQtd, int valueUnitValue, DateTime saleDatetime)
         {
-            Id = id;
             IdClient = idClient;
             IdProduct = idProduct;
             SalesQtd = salesQtd;
             ValueUnitValue = valueUnitValue;
             SaleDatetime = saleDatetime;
-            TotalSaleValue = totalSaleValue;
+            TotalSaleValue = salesQtd * valueUnitValue;
         }
 
         public int Id { get; set; }
-        public int IdClient { get; set; }
-        public int IdProduct { get; set; }
+        public int IdClient { get; set; }  
+        public int IdProduct { get; set; }  
         public int SalesQtd { get; set; }
         public int ValueUnitValue { get; set; }
         public DateTime SaleDatetime { get; set; }
