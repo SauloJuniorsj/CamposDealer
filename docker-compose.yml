@@ -1,0 +1,31 @@
+networks:
+  camposdealerApp:
+
+services:
+  camposdealer.presentation:
+    image: ${DOCKER_REGISTRY-}camposdealerpresentation
+    build:
+      context: .
+      dockerfile: CamposDealer.Presentation/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - camposdealer.database
+    environment:
+     - DB_HOST=camposdealer.database
+     - DB_NAME=camposdealer
+     - DB_SA_PASSWORD=Numsey#2024
+    networks:
+      - camposdealerApp
+  camposdealer.database:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: camposdealer.database
+    ports:
+      - "1433:1433"
+    environment:
+     - ACCEPT_EULA=Y
+     - SA_PASSWORD=Numsey#2024
+    networks:
+      - camposdealerApp
+
