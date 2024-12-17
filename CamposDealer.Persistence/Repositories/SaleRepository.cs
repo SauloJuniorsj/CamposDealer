@@ -18,6 +18,11 @@ namespace CamposDealer.Persistence.Repositories
         {
             try
             {
+                if (createModel.SaleDatetime == DateTime.MinValue)
+                {
+                    createModel.SaleDatetime = DateTime.Now;
+                }
+
                 _db.Sales.Add(createModel);
 
                 await _db.SaveChangesAsync();
@@ -61,7 +66,7 @@ namespace CamposDealer.Persistence.Repositories
 
             if (!string.IsNullOrEmpty(query))
             {
-                querySales.Where(x => x.Client.Name.Contains(query) || x.Product.Description.Contains(query));
+                querySales = querySales.Where(x => x.Client.Name.Contains(query) || x.Product.Description.Contains(query));
             }
 
             return await querySales.ToListAsync();
@@ -74,6 +79,7 @@ namespace CamposDealer.Persistence.Repositories
                 var sale = await _db.Sales
                     .Include(x => x.Client)
                     .Include(x => x.Product)
+                    .Where(x => x.Id == saleId)
                     .FirstOrDefaultAsync();
 
                 if (sale is null)

@@ -52,9 +52,18 @@ namespace CamposDealer.Persistence.Repositories
             }
         }
 
-        public async Task<List<ClientEntity>> GetAll()
+        public async Task<List<ClientEntity>> GetAll(string query)
         {
-            return await _db.Clients.ToListAsync();
+
+            var queryClient = _db.Clients
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                queryClient = queryClient.Where(x => x.Name.Contains(query));
+            }
+
+            return await queryClient.ToListAsync();
         }
 
         public async Task<ClientEntity> GetById(int id)
@@ -62,6 +71,7 @@ namespace CamposDealer.Persistence.Repositories
             try
             {
                 var client = await _db.Clients
+                    .Where(x => x.Id == id)
                     .FirstOrDefaultAsync();
 
                 if (client is null)

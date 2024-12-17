@@ -52,9 +52,17 @@ namespace CamposDealer.Persistence.Repositories
             }
         }
 
-        public async Task<List<ProductEntity>> GetAll()
+        public async Task<List<ProductEntity>> GetAll(string query)
         {
-            return await _db.Products.ToListAsync();
+            var queryProduct = _db.Products
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                queryProduct = queryProduct.Where(x => x.Description.Contains(query));
+            }
+
+            return await queryProduct.ToListAsync();
         }
 
         public async Task<ProductEntity> GetById(int id)
@@ -62,6 +70,7 @@ namespace CamposDealer.Persistence.Repositories
             try
             {
                 var product = await _db.Products
+                    .Where(x => x.Id == id)
                     .FirstOrDefaultAsync();
 
                 if (product is null)

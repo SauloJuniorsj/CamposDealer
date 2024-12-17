@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace CamposDealer.Presentation.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class ProductsController : ControllerBase
+    [Route("[controller]")]
+    public class ProductsController : Controller
     {
         private readonly IProductService _productService;
         public ProductsController(IProductService productService)
@@ -18,9 +18,9 @@ namespace CamposDealer.Presentation.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetAll")]
-        public async Task<ActionResult> GetAll()
+        public async Task<ActionResult> GetAll(string? query = null)
         {
-            var projects = await _productService.GetAll();
+            var projects = await _productService.GetAll(query);
             return Ok(projects);
         }
 

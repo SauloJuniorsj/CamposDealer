@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace CamposDealer.Presentation.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class SalesController : ControllerBase
+    [Route("[controller]")]
+    public class SalesController : Controller
     {
         private readonly ISaleService _salesService;
         public SalesController(ISaleService salesService)
@@ -19,9 +19,8 @@ namespace CamposDealer.Presentation.Controllers
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        /// 
-        [HttpGet("GetAll/{query}")]
-        public async Task<ActionResult> GetAll(string query)
+        [HttpGet("GetAll")]
+        public async Task<ActionResult> GetAll(string? query = null)
         {
             var projects = await _salesService.GetAll(query);
             return Ok(projects);
@@ -49,7 +48,7 @@ namespace CamposDealer.Presentation.Controllers
         /// <param name="saleModel"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateSaleInputModel saleModel)
+        public async Task<IActionResult> Post(CreateSaleInputModel saleModel)
         {
             var Id = await _salesService.Create(saleModel);
 

@@ -11,22 +11,26 @@ namespace CamposDealer.Application.ViewModels
                 return;
             }
 
-            Id = model.IdProduct;
+            Id = model.Id;
             IdClient = model.IdClient;
             IdProduct = model.IdProduct;
             SalesQtd = model.SalesQtd;
             ValueUnitValue = model.ValueUnitValue;
             SaleDatetime = model.SaleDatetime;
             TotalSaleValue = model.TotalSaleValue;
+            Client = new ClientViewModel(model.Client);
+            Product = new ProductViewModel(model.Product);
         }
 
-        int Id { get; set; }
+        public int Id { get; set; }
         public int IdClient { get; set; }
         public int IdProduct { get; set; }
         public int SalesQtd { get; set; }
         public int ValueUnitValue { get; set; }
         public DateTime SaleDatetime { get; set; }
         public float TotalSaleValue { get; set; }
+        public ClientViewModel Client { get; set; }
+        public ProductViewModel Product { get; set; }
 
     }
 }

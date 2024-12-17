@@ -16,6 +16,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
   </ItemGroup>
 
@@ -23,6 +24,13 @@
     <ProjectReference Include="..\CamposDealer.Application\CamposDealer.Application.csproj" />
     <ProjectReference Include="..\CamposDealer.Core\CamposDealer.Domain.csproj" />
     <ProjectReference Include="..\CamposDealer.Persistence\CamposDealer.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Sales\" />
+    <Folder Include="Views\Product\" />
+    <Folder Include="wwwroot\scripts\Sales\" />
+    <Folder Include="wwwroot\scripts\Product\" />
   </ItemGroup>
 
 </Project>

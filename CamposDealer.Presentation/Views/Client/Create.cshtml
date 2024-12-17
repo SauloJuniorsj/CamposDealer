@@ -1,0 +1,38 @@
+﻿@model CamposDealer.Application.InputModels.CreateClientInputModel
+@{
+    ViewData["Title"] = "Cadastro de Cliente";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+<form action=@Url.Action("Post", "Client") method="Post">
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="form-group">
+            <label for="Name" class="col-form-label">Nome: <span class="text-danger">*</span></label>
+            @Html.TextBoxFor(model => model.Name, new { @maxlength = "100", @class = "form-control", @autocomplete = "off", @required = "required" })
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="City" class="col-form-label">Cidade: <span class="text-danger">*</span></label>
+            @Html.TextBoxFor(model => model.City, new { @maxlength = "100", @class = "form-control", @autocomplete = "off", @required = "required" })
+            <span asp-validation-for="City" class="text-danger"></span> 
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-info">Voltar a lista</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

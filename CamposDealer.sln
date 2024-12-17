@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CamposDealer.Domain", "Camp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CamposDealer.Application", "CamposDealer.Application\CamposDealer.Application.csproj", "{6F59D4D2-F618-4022-9403-30AABE8C7525}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamposDealer.Persistence", "CamposDealer.Persistence\CamposDealer.Persistence.csproj", "{2B1A3D5D-D1BC-4893-A2EF-D92607B4692A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CamposDealer.Persistence", "CamposDealer.Persistence\CamposDealer.Persistence.csproj", "{2B1A3D5D-D1BC-4893-A2EF-D92607B4692A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamposDealer.Presentation", "CamposDealer.Presentation\CamposDealer.Presentation.csproj", "{49DC6DC3-B5CC-4191-A06B-284FCBEED0D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CamposDealer.Presentation", "CamposDealer.Presentation\CamposDealer.Presentation.csproj", "{49DC6DC3-B5CC-4191-A06B-284FCBEED0D9}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{23FFBBEA-BE2C-4E61-A75F-A4346EAAAD74}"
 EndProject

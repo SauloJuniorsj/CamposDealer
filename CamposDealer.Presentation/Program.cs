@@ -24,11 +24,6 @@ builder.Services.AddSwaggerGen(c =>
         Title = "CamposDealer API",
         Version = "v1",
         Description = "API de integração de dados para CamposDealer",
-        Contact = new OpenApiContact
-        {
-            Name = "Seu Nome",
-            Email = "seuemail@exemplo.com"
-        }
     });
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -66,6 +61,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Client}/{action=Index}");
 
 app.Run();

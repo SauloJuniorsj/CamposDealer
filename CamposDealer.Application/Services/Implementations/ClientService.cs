@@ -32,9 +32,9 @@ namespace CamposDealer.Application.Services.Implementations
             return await _clientRepository.Delete(clientId);
         }
 
-        public async Task<CollectionClientViewModel> GetAll()
+        public async Task<CollectionClientViewModel> GetAll(string query)
         {
-            var clients = await _clientRepository.GetAll();
+            var clients = await _clientRepository.GetAll(query);
             var clientsViewModels = new CollectionClientViewModel(clients);
             return clientsViewModels;
         }
@@ -53,12 +53,15 @@ namespace CamposDealer.Application.Services.Implementations
 
         public async Task<int> Update(UpdateClientInputModel model)
         {
-            var oldModel = await GetById(model.Id);
+            var client = await _clientRepository.GetById(model.Id);
 
-            ClientEntity client = new ClientEntity(
-                model.City,
-                model.Name
-                );
+            if (client == null)
+            {
+                return 0;
+            }
+
+            client.City = model.City;
+            client.Name = model.Name;
 
             return await _clientRepository.Update(client);
         }

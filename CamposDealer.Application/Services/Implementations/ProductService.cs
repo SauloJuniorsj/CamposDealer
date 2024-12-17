@@ -27,9 +27,9 @@ namespace CamposDealer.Application.Services.Implementations
             return await _productRepository.Delete(ProductId);
         }
 
-        public async Task<CollectionProductViewModel> GetAll()
+        public async Task<CollectionProductViewModel> GetAll(string query)
         {
-            var products = await _productRepository.GetAll();
+            var products = await _productRepository.GetAll(query);
             var productsViewModels = new CollectionProductViewModel(products);
             return productsViewModels;
         }
