@@ -88,8 +88,8 @@ namespace CamposDealer.Persistence.Migrations
                     b.Property<float>("TotalSaleValue")
                         .HasColumnType("real");
 
-                    b.Property<int>("ValueUnitValue")
-                        .HasColumnType("int");
+                    b.Property<float>("ValueUnitValue")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CamposDealer.Persistence.Migrations
 {
     [DbContext(typeof(CamposDealerContext))]
-    [Migration("20241216190813_firstMigration")]
-    partial class firstMigration
+    [Migration("20241217193107_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,8 +91,8 @@ namespace CamposDealer.Persistence.Migrations
                     b.Property<float>("TotalSaleValue")
                         .HasColumnType("real");
 
-                    b.Property<int>("ValueUnitValue")
-                        .HasColumnType("int");
+                    b.Property<float>("ValueUnitValue")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 

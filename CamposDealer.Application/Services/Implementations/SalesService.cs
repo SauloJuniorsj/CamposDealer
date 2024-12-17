@@ -3,26 +3,36 @@ using CamposDealer.Application.Services.Interfaces;
 using CamposDealer.Application.ViewModels;
 using CamposDealer.Domain.Entities;
 using CamposDealer.Domain.Repositories;
+using CamposDealer.Persistence.Repositories;
 
 namespace CamposDealer.Application.Services.Implementations
 {
     public class SalesService : ISaleService
     {
         private readonly ISalesRepository _salesRepository;
-        public SalesService(ISalesRepository salesRepository)
+        private readonly IProductRepository _productRepository;
+        public SalesService(ISalesRepository salesRepository, IProductRepository productRepository)
         {
             _salesRepository = salesRepository;
+            _productRepository = productRepository;
         }
 
         public async Task<int> Create(CreateSaleInputModel model)
         {
+            var product = await _productRepository.GetById(model.IdProduct);
+            
+            if (product == null)
+            {
+                return 0;
+            }
+
             SalesEntity sales = new SalesEntity(
                 model.IdClient,
                 model.IdProduct,
                 model.SalesQtd,
-                model.ValueUnitValue,
-                model.SaleDatetime,
-                model.TotalSaleValue
+                product.ProductValue,
+                DateTime.Now,
+                product.ProductValue * model.SalesQtd
                 );
 
             return await _salesRepository.Create(sales);
@@ -54,11 +64,24 @@ namespace CamposDealer.Application.Services.Implementations
 
         public async Task<int> Update(UpdateSaleInputModel model)
         {
-            var oldModel = await GetById(model.Id);
+            var sale = await _salesRepository.GetById(model.Id);
 
-            SalesEntity sale = new SalesEntity(model.Id, model.IdClient, model.IdProduct, model.SalesQtd, model.ValueUnitValue, model.TotalSaleValue);
+            if (sale == null)
+            {
+                return 0;
+            }
+
+            sale.TotalSaleValue = model.TotalSaleValue;
+            sale.SalesQtd = model.SalesQtd;
+            sale.ValueUnitValue = model.ValueUnitValue;
+            sale.IdClient = model.IdClient;
+            sale.IdProduct = model.IdProduct;
+            sale.Id = model.Id;
+            sale.TotalSaleValue = model.SalesQtd * sale.Product.ProductValue;
+            sale.SalesQtd = model.SalesQtd;
 
             return await _salesRepository.Update(sale);
+
         }
     }
 }

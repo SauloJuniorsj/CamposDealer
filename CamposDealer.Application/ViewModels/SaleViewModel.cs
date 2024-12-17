@@ -26,7 +26,7 @@ namespace CamposDealer.Application.ViewModels
         public int IdClient { get; set; }
         public int IdProduct { get; set; }
         public int SalesQtd { get; set; }
-        public int ValueUnitValue { get; set; }
+        public float ValueUnitValue { get; set; }
         public DateTime SaleDatetime { get; set; }
         public float TotalSaleValue { get; set; }
         public ClientViewModel Client { get; set; }

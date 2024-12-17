@@ -1,0 +1,98 @@
+﻿@model CamposDealer.Application.ViewModels.CollectionSaleViewModel
+
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<style>
+    .modal-lg {
+        max-width: 80%;
+    }
+</style>
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="pull-left">
+                <a asp-action="Create" class="btn btn-primary">
+                    <span title="Criar novo produto" class="fas fa-plus">Criar novo produto</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="panel panel-default">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CollectionSale.FirstOrDefault().Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CollectionSale.FirstOrDefault().Product.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CollectionSale.FirstOrDefault().Client.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CollectionSale.FirstOrDefault().ValueUnitValue)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CollectionSale.FirstOrDefault().SalesQtd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CollectionSale.FirstOrDefault().TotalSaleValue)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CollectionSale.FirstOrDefault().SaleDatetime)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CollectionSale)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Product.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Client.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.ValueUnitValue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.SalesQtd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.TotalSaleValue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.SaleDatetime)
+                    </td>
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" title="Editar" class="btn btn-warning">
+                            <span class="fas fa-edit">Editar</span>
+                        </a>
+
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" title="Excluir" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta venda?');">
+                                <span class="fas fa-trash">Excluir</span>
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

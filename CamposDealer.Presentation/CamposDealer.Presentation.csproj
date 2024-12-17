@@ -27,8 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Sales\" />
-    <Folder Include="Views\Product\" />
     <Folder Include="wwwroot\scripts\Sales\" />
     <Folder Include="wwwroot\scripts\Product\" />
   </ItemGroup>

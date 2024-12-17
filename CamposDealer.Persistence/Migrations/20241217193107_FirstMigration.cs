@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CamposDealer.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class firstMigration : Migration
+    public partial class FirstMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,7 +48,7 @@ namespace CamposDealer.Persistence.Migrations
                     IdClient = table.Column<int>(type: "int", nullable: false),
                     IdProduct = table.Column<int>(type: "int", nullable: false),
                     SalesQtd = table.Column<int>(type: "int", nullable: false),
-                    ValueUnitValue = table.Column<int>(type: "int", nullable: false),
+                    ValueUnitValue = table.Column<float>(type: "real", nullable: false),
                     SaleDatetime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalSaleValue = table.Column<float>(type: "real", nullable: false)
                 },

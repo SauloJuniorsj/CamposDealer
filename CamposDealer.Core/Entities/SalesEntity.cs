@@ -6,7 +6,7 @@
         {
             
         }
-        public SalesEntity(int id, int idClient, int idProduct, int salesQtd, int valueUnitValue, float totalSaleValue)
+        public SalesEntity(int id, int idClient, int idProduct, int salesQtd, float valueUnitValue, float totalSaleValue)
         {
             Id = id;
             IdClient = idClient;
@@ -16,7 +16,7 @@
             TotalSaleValue = totalSaleValue;
         }
 
-        public SalesEntity(int idClient, int idProduct, int salesQtd, int valueUnitValue, DateTime saleDatetime, float totalSaleValue)
+        public SalesEntity(int idClient, int idProduct, int salesQtd, float valueUnitValue, DateTime saleDatetime, float totalSaleValue)
         {
             IdClient = idClient;
             IdProduct = idProduct;
@@ -26,7 +26,7 @@
             TotalSaleValue = totalSaleValue;
         }
 
-        public SalesEntity(int idClient, int idProduct, int salesQtd, int valueUnitValue, DateTime saleDatetime)
+        public SalesEntity(int idClient, int idProduct, int salesQtd, float valueUnitValue, DateTime saleDatetime)
         {
             IdClient = idClient;
             IdProduct = idProduct;
@@ -40,7 +40,7 @@
         public int IdClient { get; set; }  
         public int IdProduct { get; set; }  
         public int SalesQtd { get; set; }
-        public int ValueUnitValue { get; set; }
+        public float ValueUnitValue { get; set; }
         public DateTime SaleDatetime { get; set; }
         public float TotalSaleValue { get; set; }
 

@@ -1,7 +1,7 @@
-﻿@model CamposDealer.Application.ViewModels.CollectionClientViewModel
+﻿@model CamposDealer.Application.ViewModels.CollectionProductViewModel
 
 @{
-    ViewData["Title"] = "Clientes";
+    ViewData["Title"] = "Produtos";
 }
 
 <style>
@@ -17,7 +17,7 @@
         <div>
             <div class="pull-left">
                 <a asp-action="Create" class="btn btn-primary">
-                    <span title="Criar novo cliente" class="fas fa-plus">Criar novo cliente</span>
+                    <span title="Criar novo produto" class="fas fa-plus">Criar novo produto</span>
                 </a>
             </div>
         </div>
@@ -29,28 +29,28 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.CollectionClient.FirstOrDefault().Id)
+                    @Html.DisplayNameFor(model => model.CollectionProduct.FirstOrDefault().Id)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CollectionClient.FirstOrDefault().Name)
+                    @Html.DisplayNameFor(model => model.CollectionProduct.FirstOrDefault().Description)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CollectionClient.FirstOrDefault().City)
+                    @Html.DisplayNameFor(model => model.CollectionProduct.FirstOrDefault().ProductValue)
                 </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.CollectionClient)
+            @foreach (var item in Model.CollectionProduct)
             {
                 <tr>
                     <td>
                         @Html.DisplayFor(x => item.Id)
                     </td>
                     <td>
-                        @Html.DisplayFor(x => item.Name)
+                        @Html.DisplayFor(x => item.Description)
                     </td>
                     <td>
-                        @Html.DisplayFor(x => item.City)
+                        @Html.DisplayFor(x => item.ProductValue)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id" title="Editar" class="btn btn-warning">
@@ -59,7 +59,7 @@
 
                         <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;">
                             <input type="hidden" name="id" value="@item.Id" />
-                            <button type="submit" title="Excluir" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este cliente?');">
+                            <button type="submit" title="Excluir" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este produto?');">
                                 <span class="fas fa-trash">Excluir</span>
                             </button>
                         </form>

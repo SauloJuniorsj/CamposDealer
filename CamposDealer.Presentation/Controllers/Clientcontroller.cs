@@ -18,8 +18,8 @@ namespace CamposDealer.Presentation.Controllers
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> Index()
         {
-            var projects = await _clientService.GetAll(string.Empty);
-            return View(projects);
+            var clients = await _clientService.GetAll(string.Empty);
+            return View(clients);
         }
 
         /// <summary>

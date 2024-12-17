@@ -3,6 +3,7 @@ using CamposDealer.Application.Services.Interfaces;
 using CamposDealer.Application.ViewModels;
 using CamposDealer.Domain.Entities;
 using CamposDealer.Domain.Repositories;
+using CamposDealer.Persistence.Repositories;
 
 namespace CamposDealer.Application.Services.Implementations
 {
@@ -46,11 +47,17 @@ namespace CamposDealer.Application.Services.Implementations
 
         public async Task<int> Update(UpdateProductInputModel model)
         {
-            var oldModel = await GetById(model.Id);
+            var product = await _productRepository.GetById(model.Id);
 
-            ProductEntity product = new ProductEntity(model.Id, model.Description, model.ProductValue);
+            if (product == null)
+            {
+                return 0;
+            }
+            product.Description = model.Description;
+            product.ProductValue = model.ProductValue;
             
             return await _productRepository.Update(product);
+
         }
     }
 }
