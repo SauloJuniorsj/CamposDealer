@@ -34,7 +34,7 @@ https://youtu.be/EFBuoO0LZPw
 Esse projeto precisa de docker instalado e executando
 
 ```bash
-    docker-compose
+    docker-compose up
   ```
 Será apresentada a documentação do Swagger no endpoint 
 
