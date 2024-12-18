@@ -1,4 +1,6 @@
 ﻿using CamposDealer.Domain.Entities;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace CamposDealer.Application.ViewModels
 {
@@ -23,11 +25,18 @@ namespace CamposDealer.Application.ViewModels
         }
 
         public int Id { get; set; }
+        [DisplayName("Cliente")]
         public int IdClient { get; set; }
+        [DisplayName("Produto")]
         public int IdProduct { get; set; }
+        [DisplayName("Quantidade")]
         public int SalesQtd { get; set; }
+        [DisplayName("Valor Unitário")]
+        [DisplayFormat(DataFormatString = "{0:C2}")]
         public float ValueUnitValue { get; set; }
+        [DisplayName("Data da Venda")]
         public DateTime SaleDatetime { get; set; }
+        [DisplayName("Valor Total")]
         public float TotalSaleValue { get; set; }
         public ClientViewModel Client { get; set; }
         public ProductViewModel Product { get; set; }

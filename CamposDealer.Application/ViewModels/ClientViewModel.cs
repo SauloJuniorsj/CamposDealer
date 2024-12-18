@@ -1,4 +1,5 @@
 ﻿using CamposDealer.Domain.Entities;
+using System.ComponentModel;
 
 namespace CamposDealer.Application.ViewModels
 {
@@ -17,7 +18,9 @@ namespace CamposDealer.Application.ViewModels
         }
 
         public int Id { get; set; }
+        [DisplayName("Nome")]
         public string Name { get; set; }
+        [DisplayName("Cidade")]
         public string City { get; set; }
     }
 }

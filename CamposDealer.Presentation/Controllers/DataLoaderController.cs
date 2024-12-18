@@ -15,7 +15,10 @@ namespace CamposDealer.Presentation.Controllers
         {
             _dataLoaderService = dataLoaderService;
         }
-
+        /// <summary>
+        /// FAÇA ESSE PRIMEIRO: Carrega os dados dos endpoints fornecidos
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("load-data")]
         public async Task<IActionResult> LoadData()
         {
